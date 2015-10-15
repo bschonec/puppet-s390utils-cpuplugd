@@ -20,26 +20,21 @@ class s390utils_cpuplugd::params {
   # This value not available on RHEL7
   $pgscan_k = "vmstat.pgscan_kswapd_dma + vmstat.pgscan_kswapd_normal + vmstat.pgscan_kswapd_movable"
 
-  $pgscan_d = $::lsbmajdistrelease ?  {
-     6 => "vmstat.pgscan_direct_dma + vmstat.pgscan_direct_normal + vmstat.pgscan_direct_movable",
-     7 => "vmstat.pgscan_direct_dma[0] + vmstat.pgscan_direct_normal[0] + vmstat.pgscan_direct_movable[0]",
-  }
+  $pgscan_d = "vmstat.pgscan_direct_dma[0] + vmstat.pgscan_direct_normal[0] + vmstat.pgscan_direct_movable[0]"
 
   # This value not availabe on RHEL7
   $pgscan_k1 = "vmstat.pgscan_kswapd_dma[1] + vmstat.pgscan_kswapd_normal[1] + vmstat.pgscan_kswapd_movable[1]"
 
   $pgscan_d1 = "vmstat.pgscan_direct_dma[1] + vmstat.pgscan_direct_normal[1] + vmstat.pgscan_direct_movable[1]"
 
-  $pgscanrate	=	$::lsbmajdistrelease ?  {
-    6 =>  "(pgscan_k + pgscan_d - pgscan_k1 - pgscan_d1) / (time - time[1])",
-    7 =>  "(pgscan_d - pgscan_d1) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])",
-  }
+  $pgscanrate   = "(pgscan_d - pgscan_d1) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
 
   # RHEL6 only 
   $cache = "meminfo.Cached + meminfo.Buffers"
 
   # RHEL7 only
   $avail_cache  = "meminfo.Cached - meminfo.Shmem"
+
   $user_0       = "(cpustat.user[0] - cpustat.user[1])"
   $nice_0       = "(cpustat.nice[0] - cpustat.nice[1])"
   $system_0     = "(cpustat.system[0] - cpustat.system[1])"
@@ -57,22 +52,11 @@ class s390utils_cpuplugd::params {
   $CP_idle2     = "(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
   $CP_idleAVG   = "(CP_idle0 + CP_idle2) / 2"
 
-  $cmm_inc	=	$::lsbmajdistrelease ?  {
-    6 => "(meminfo.MemFree + cache) / 40",
-    7 => "meminfo.MemFree / 40",
-  }
+  $cmm_inc	= "meminfo.MemFree / 40"
+  $cmm_dec      = "meminfo.MemTotal / 40"
 
-  $cmm_dec = "meminfo.MemTotal / 40"
-
-  $hotplug	=	$::lsbmajdistrelease ?  {
-    6 => "(loadavg > onumcpus + 0.75) & (idle < 10.0)",
-    7 => "((1 - CP_ActiveAVG) * onumcpus) < 0.08",
-  }
-
-  $hotunplug	=	$::lsbmajdistrelease ?  {
-    6 => "(loadavg < onumcpus - 0.25) | (idle > 50)",
-    7 => "(CP_idleAVG * onumcpus) > 1.15",
-  }
+  $hotplug	= "((1 - CP_ActiveAVG) * onumcpus) < 0.08"
+  $hotunplug	= "(CP_idleAVG * onumcpus) > 1.15"
 
   $memplug   = 0
   $memunplug = 0

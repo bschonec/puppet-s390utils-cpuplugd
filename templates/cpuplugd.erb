@@ -46,7 +46,7 @@ CMM_MIN="<%= @cmm_min %>"
 <%- if @lsbmajdistrelease.eql?("7") -%>
 # Recommended setting is system size minus 256 MB
 <%- end -%>
-CMM_MAX="<%= @cmm_max %>"    # <%= @cmm_max.to_i / 256 -%> MB
+CMM_MAX="<%= @cmm_max.to_i %>"    # <%= @cmm_max.to_i / 256 -%> MB
 
 #
 # Variables
@@ -59,13 +59,9 @@ CMM_MAX="<%= @cmm_max %>"    # <%= @cmm_max.to_i / 256 -%> MB
 # and the maximum total size for user-defined variables (names + values) is 4096
 # characters.
 #
-<%- if @lsbmajdistrelease.eql?("6") -%>
 pgscan_k="<%= @pgscan_k %>"
-<%- end -%>
 pgscan_d="<%= @pgscan_d %>"
-<%- if @lsbmajdistrelease.eql?("6") -%>
 pgscan_k1="<%= @pgscan_k1 %>"
-<%- end -%>
 pgscan_d1="<%= @pgscan_d1 %>"
 <%- case @lsbmajdistrelease -%>
 <%- when "6" -%>
@@ -75,12 +71,8 @@ pgscan_d1="<%= @pgscan_d1 %>"
 <%- end -%>
 pgscanrate="<%= @pgscanrate %>"
 # cache usage in kilobytes
-<%- case @lsbmajdistrelease -%>
-<%- when "6" -%>
 cache="meminfo.Cached + meminfo.Buffers"
-<%- when "7" -%>
 avail_cache="meminfo.Cached - meminfo.Shmem"
-
 user_0="(cpustat.user[0] - cpustat.user[1])"
 nice_0="(cpustat.nice[0] - cpustat.nice[1])"
 system_0="(cpustat.system[0] - cpustat.system[1])"
@@ -98,7 +90,6 @@ iowait_2="(cpustat.iowait[2] - cpustat.iowait[3])"
 CP_idle0="(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
 CP_idle2="(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
 CP_idleAVG="(CP_idle0 + CP_idle2) / 2"
-<%- end -%>
 
 ## Type:	string
 ## Default:	"(meminfo.MemFree + cache) / 40"
