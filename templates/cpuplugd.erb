@@ -36,7 +36,7 @@ UPDATE="<%= @update %>"
 #
 # The minimum size of the static page pool (in 4K pages)
 #
-CMM_MIN="<%= @cmm_min %>"
+CMM_MIN="<%= @cmm_min %>" # <%= @cmm_min.to_i * 4000 / 1024 / 1000 -%> MiB
 
 ## Type:	integer
 ## Default:	131072
@@ -46,7 +46,7 @@ CMM_MIN="<%= @cmm_min %>"
 <%- if @lsbmajdistrelease.eql?("7") -%>
 # Recommended setting is system size minus 256 MB
 <%- end -%>
-CMM_MAX="<%= @cmm_max.to_i %>"    # <%= @cmm_max.to_i / 256 -%> MB
+CMM_MAX="<%= @cmm_max.to_i %>"    # <%= @cmm_max.to_i * 4000 / 1024 / 1000 -%> MiB
 
 #
 # Variables
@@ -103,7 +103,7 @@ CP_idleAVG="(CP_idle0 + CP_idle2) / 2"
 <%- when "7" -%>
 # cmm_inc: 10% of free memory, in 4K pages
 <%- end -%>
-CMM_INC="<%= @cmm_inc %>"
+CMM_INC="<%= @cmm_inc.to_i %>"
 
 ## Type:	string
 ## Default:	"meminfo.MemTotal / 40"
@@ -117,7 +117,7 @@ CMM_INC="<%= @cmm_inc %>"
 <%- when "7" -%>
 # cmm_dec: 10% of total memory, in 4K pages
 <%- end -%>
-CMM_DEC="<%= @cmm_dec %>"
+CMM_DEC="<%= @cmm_dec.to_i %>"
 
 #
 # Ruledefinitions
