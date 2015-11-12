@@ -1,3 +1,7 @@
+# params.pp
+# Set up defaults and such.
+#
+
 class s390utils_cpuplugd::params {
 
   $service_ensure = running

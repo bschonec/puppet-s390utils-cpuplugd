@@ -1,3 +1,6 @@
+# s390utils_cpuplugd.pp
+# Set up cpuplugd and service.
+#
 class s390utils_cpuplugd (
 
  $service_ensure = $::s390utils_cpuplugd::params::service_ensure,
