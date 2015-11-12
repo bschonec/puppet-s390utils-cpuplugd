@@ -1,7 +1,7 @@
 <%# Include the standard Puppet header -%>
 <%= scope.function_template(['base/template-header.erb']) -%>
 #
-# Exemplary configuration file for the Linux on System z CPU and memory hotplug
+# Exemplary configuration file for the Linux on System z cpU and memory hotplug
 # daemon
 #
 # The file is evaluated by cpuplugd at startup when called with -c.
@@ -10,17 +10,17 @@
 ## Type:	integer
 ## Default:	1
 #
-# The minimum number of CPUs must be > 0.
+# The minimum number of cpUs must be > 0.
 #
-CPU_MIN="<%= @cpu_min %>"
+cpU_MIN="<%= @cpu_min %>"
 
 ## Type:	integer
 ## Default:	0
 #
-# The maximum number of CPUs to be enabled. If 0 is specified here,
-# the maximum number of CPUs equals the number of CPUs detected.
+# The maximum number of cpUs to be enabled. If 0 is specified here,
+# the maximum number of cpUs equals the number of cpUs detected.
 #
-CPU_MAX="<%= @cpu_max %>"
+cpU_MAX="<%= @cpu_max %>"
 
 ## Type:	integer
 ## Default:	5
@@ -87,9 +87,9 @@ idle_0="(cpustat.idle[0] - cpustat.idle[1])"
 iowait_0="(cpustat.iowait[0] - cpustat.iowait[1])"
 idle_2="(cpustat.idle[2] - cpustat.idle[3])"
 iowait_2="(cpustat.iowait[2] - cpustat.iowait[3])"
-CP_idle0="(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
-CP_idle2="(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
-CP_idleavg="(CP_idle0 + CP_idle2) / 2"
+cp_idle0="(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
+cp_idle2="(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
+cp_idleavg="(cp_idle0 + cp_idle2) / 2"
 
 ## Type:	string
 ## Default:	"(meminfo.MemFree + cache) / 40"
@@ -123,15 +123,15 @@ CMM_DEC="<%= @cmm_dec.to_i %>"
 # Ruledefinitions
 #
 # Four kinds of rules are distinguished
-#   (1) hotplug rules, used to enable CPUs
-#   (2) hotunplug rules, to disable CPUs
+#   (1) hotplug rules, used to enable cpUs
+#   (2) hotunplug rules, to disable cpUs
 #   (3) memplug rules, used to increase memory (decrease cmm balloon)
 #   (4) memunplug rules, used to decrease memory (increase cmm balloon)
 #
 # Within the hotplug/hotunplug rule definitions the following variables
 # can be used:
 #   - loadavg:		the current loadaverage
-#   - onumcpus:		the current number of CPUs which are online
+#   - onumcpus:		the current number of cpUs which are online
 #   - runnable_proc:	the current amount of runnable processes
 #   - user:		the current user percentage
 #   - nice:		the current nice percentage

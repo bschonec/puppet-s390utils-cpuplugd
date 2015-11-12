@@ -40,9 +40,9 @@ class s390utils_cpuplugd (
   $iowait_0    = $::s390utils_cpuplugd::params::iowait_0,
   $idle_2      = $::s390utils_cpuplugd::params::idle_2,
   $iowait_2    = $::s390utils_cpuplugd::params::iowait_2,
-  $CP_idle0    = $::s390utils_cpuplugd::params::CP_idle0,
-  $CP_idle2    = $::s390utils_cpuplugd::params::CP_idle2,
-  $CP_idleavg   = $::s390utils_cpuplugd::params::CP_idleavg,
+  $cp_idle0    = $::s390utils_cpuplugd::params::cp_idle0,
+  $cp_idle2    = $::s390utils_cpuplugd::params::cp_idle2,
+  $cp_idleavg   = $::s390utils_cpuplugd::params::cp_idleavg,
 
   # Both RHEL6 and RHEL7 settings
   $cmm_inc    = $::s390utils_cpuplugd::params::cmm_inc,

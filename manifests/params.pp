@@ -52,15 +52,15 @@ class s390utils_cpuplugd::params {
   $iowait_0     = '(cpustat.iowait[0] - cpustat.iowait[1])'
   $idle_2       = '(cpustat.idle[2] - cpustat.idle[3])'
   $iowait_2     = '(cpustat.iowait[2] - cpustat.iowait[3])'
-  $CP_idle0     = '(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])'
-  $CP_idle2     = '(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])'
-  $CP_idleavg   = '(CP_idle0 + CP_idle2) / 2'
+  $cp_idle0     = '(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])'
+  $cp_idle2     = '(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])'
+  $cp_idleavg   = '(cp_idle0 + cp_idle2) / 2'
 
   $cmm_inc      = 'meminfo.MemFree / 40'
   $cmm_dec      = 'meminfo.MemTotal / 40'
 
   $hotplug      = '((1 - cp_activeavg) * onumcpus) < 0.08'
-  $hotunplug    = '(CP_idleavg * onumcpus) > 1.15'
+  $hotunplug    = '(cp_idleavg * onumcpus) > 1.15'
 
   $memplug   = 0
   $memunplug = 0
