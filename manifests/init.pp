@@ -5,8 +5,8 @@ class s390utils_cpuplugd (
 
   $service_ensure = $::s390utils_cpuplugd::params::service_ensure,
   $service_enable = $::s390utils_cpuplugd::params::service_enable,
- 
- # Both RHEL6 and RHEL7 settings
+
+  # Both RHEL6 and RHEL7 settings
   $cpu_min    = $::s390utils_cpuplugd::params::cpu_min,
   $cpu_max    = $::s390utils_cpuplugd::params::cpu_max,
   $update    = $::s390utils_cpuplugd::params::update,
@@ -58,7 +58,7 @@ class s390utils_cpuplugd (
   file { '/etc/sysconfig/cpuplugd':
 
     ensure  =>  file,
-    mode    =>  '644',
+    mode    =>  '0644',
     owner   =>  'root',
     group   =>  'root',
     content =>   template('s390utils_cpuplugd/cpuplugd.erb'),
@@ -77,7 +77,7 @@ class s390utils_cpuplugd (
 
   file { '/etc/init.d/cpuplugd':
     notify  => Service['cpuplugd'],  # this sets up the relationship
-    mode    => 755,
+    mode    => '0755',
     owner   => 'root',
     group   => 'root',
     require => Package['s390utils-cpuplugd'],
