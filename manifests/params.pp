@@ -15,7 +15,7 @@ class s390utils_cpuplugd::params {
   }
 
   $cmm_min = 0
-  $cmm_max = 131072	
+  $cmm_max = 131072
 
   # This value not available on RHEL7
   $pgscan_k = 'vmstat.pgscan_kswapd_dma + vmstat.pgscan_kswapd_normal + vmstat.pgscan_kswapd_movable'
@@ -52,11 +52,11 @@ class s390utils_cpuplugd::params {
   $CP_idle2     = '(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])'
   $CP_idleAVG   = '(CP_idle0 + CP_idle2) / 2'
 
-  $cmm_inc	= 'meminfo.MemFree / 40'
+  $cmm_inc      = 'meminfo.MemFree / 40'
   $cmm_dec      = 'meminfo.MemTotal / 40'
 
-  $hotplug	= '((1 - CP_ActiveAVG) * onumcpus) < 0.08'
-  $hotunplug	= '(CP_idleAVG * onumcpus) > 1.15'
+  $hotplug      = '((1 - CP_ActiveAVG) * onumcpus) < 0.08'
+  $hotunplug    = '(CP_idleAVG * onumcpus) > 1.15'
 
   $memplug   = 0
   $memunplug = 0
