@@ -72,13 +72,4 @@ class s390utils_cpuplugd (
    ensure  =>  installed,
  }
  
- file { "/etc/init.d/cpuplugd":
-     notify  => Service["cpuplugd"],  # this sets up the relationship
-     mode    => 755,
-     owner   => "root",
-     group   => "root",
-     require => Package["s390utils-cpuplugd"],
-     content => file("s390utils_cpuplugd/cpuplugd"),
- }
- 
 }
