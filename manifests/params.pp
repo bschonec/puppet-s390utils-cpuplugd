@@ -10,8 +10,8 @@ class s390utils_cpuplugd::params {
 
   # RHEL6 has an update of 5. RHEL7 has update of 1
   $update = $::lsbmajdistrelease ?  {
-    6 =>  5,
-    7 =>  1,
+    '6' =>  5,
+    '7' =>  1,
   }
 
   $cmm_min = 0
@@ -41,16 +41,16 @@ class s390utils_cpuplugd::params {
   $user_2       = "(cpustat.user[2] - cpustat.user[3])"
   $nice_2       = "(cpustat.nice[2] - cpustat.nice[3])"
   $system_2     = "(cpustat.system[2] - cpustat.system[3])"
-  $CP_Active0   = "(user_0 + nice_0 + system_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
-  $CP_Active2   = "(user_2 + nice_2 + system_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
-  $CP_ActiveAVG = "(CP_Active0+CP_Active2) / 2"
+  $cp_active0   = "(user_0 + nice_0 + system_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
+  $cp_active2   = "(user_2 + nice_2 + system_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
+  $cp_activeavg = "(CP_Active0+CP_Active2) / 2"
   $idle_0       = "(cpustat.idle[0] - cpustat.idle[1])"
   $iowait_0     = "(cpustat.iowait[0] - cpustat.iowait[1])"
   $idle_2       = "(cpustat.idle[2] - cpustat.idle[3])"
   $iowait_2     = "(cpustat.iowait[2] - cpustat.iowait[3])"
-  $CP_idle0     = "(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
-  $CP_idle2     = "(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
-  $CP_idleAVG   = "(CP_idle0 + CP_idle2) / 2"
+  $cp_idle0     = "(idle_0 + iowait_0) / (cpustat.total_ticks[0] - cpustat.total_ticks[1])"
+  $cp_idle2     = "(idle_2 + iowait_2) / (cpustat.total_ticks[2] - cpustat.total_ticks[3])"
+  $cp_idleavg   = "(CP_idle0 + CP_idle2) / 2"
 
   $cmm_inc	= "meminfo.MemFree / 40"
   $cmm_dec      = "meminfo.MemTotal / 40"
